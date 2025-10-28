@@ -1,0 +1,13 @@
+export const DIRECTUS_URL = process.env.NEXT_PUBLIC_DIRECTUS_URL as string;
+export const DIRECTUS_TOKEN = process.env.NEXT_PUBLIC_DIRECTUS_TOKEN as string;
+export const DIRECTUS_CACHE_BUSTER = process.env.NEXT_PUBLIC_DIRECTUS_CACHE_BUSTER as string;
+export const MEDUSA_BACKEND_URL = process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL as string;
+export const MEDUSA_ADMIN_API_TOKEN = process.env.MEDUSA_ADMIN_API_TOKEN as string;
+export const GTM_CONTAINER_ID = process.env.NEXT_PUBLIC_GTM_CONTAINER_ID || '';
+export const STORE_HANDLE = process.env.NEXT_PUBLIC_STORE_HANDLE as string;
+export const SALES_CHANNEL_IS_B2B = STORE_HANDLE === 'b2b';
+export const SALES_CHANNEL_ID = process.env.NEXT_PUBLIC_SALES_CHANNEL_ID as string;
+export const CAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY || '';
+export const BASE_STORE_URL = process.env.NEXT_PUBLIC_BASE_STORE_URL as string;
+export const BASE_MEDIA_URL = process.env.NEXT_PUBLIC_BASE_MEDIA_URL as string;
+export const PRICE_LIST_ID = process.env.NEXT_PUBLIC_PRICE_LIST_ID as string;

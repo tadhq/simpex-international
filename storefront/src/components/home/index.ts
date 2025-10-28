@@ -1,0 +1,9 @@
+export { default as BannersWideSection } from './BannersWideSection';
+export { default as BrandsCarouselSection } from './BrandsCarouselSection';
+export { default as CategoriesCarouselSection } from './CategoriesCarouselSection';
+export { default as FeaturedProduct } from './FeaturedProduct';
+export { default as NewsletterCtaSection } from './NewsletterCtaSection';
+export { default as NewsletterSection } from './NewsletterSection';
+export { default as ProductsTabs2Section } from './ProductsTabs2Section';
+export { default as ProductsTabsSection } from './ProductsTabsSection';
+export { default as VideoHeroSection } from './VideoHeroSection';

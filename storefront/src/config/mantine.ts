@@ -1,0 +1,60 @@
+import { appConfig } from '@/config/app';
+import { createTheme } from '@mantine/core';
+import { green, red } from 'tailwindcss/colors';
+
+export const theme = createTheme({
+  colors: {
+    primary: [
+      appConfig.colors.primary[50],
+      appConfig.colors.primary[100],
+      appConfig.colors.primary[200],
+      appConfig.colors.primary[300],
+      appConfig.colors.primary[500],
+      appConfig.colors.primary[600],
+      appConfig.colors.primary[700],
+      appConfig.colors.primary[800],
+      appConfig.colors.primary[900],
+      appConfig.colors.primary[950],
+    ],
+    secondary: [
+      appConfig.colors.secondary[50],
+      appConfig.colors.secondary[100],
+      appConfig.colors.secondary[200],
+      appConfig.colors.secondary[300],
+      appConfig.colors.secondary[500],
+      appConfig.colors.secondary[600],
+      appConfig.colors.secondary[700],
+      appConfig.colors.secondary[800],
+      appConfig.colors.secondary[900],
+      appConfig.colors.secondary[950],
+    ],
+    green: [
+      green[100],
+      green[200],
+      green[300],
+      green[400],
+      green[500],
+      green[600],
+      green[700],
+      green[800],
+      green[900],
+      green[950],
+    ],
+    red: [
+      red[100],
+      red[200],
+      red[300],
+      red[400],
+      red[500],
+      red[600],
+      red[700],
+      red[800],
+      red[900],
+      red[950],
+    ],
+  },
+  defaultRadius: 'md',
+  fontFamily: 'inherit',
+  primaryColor: 'primary',
+  primaryShade: 5,
+});

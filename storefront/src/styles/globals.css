@@ -1,0 +1,24 @@
+@layer tailwind {
+  @tailwind base;
+}
+@tailwind components;
+@tailwind utilities;
+
+body {
+  /* Turn off font ligatures */
+  font-variant-ligatures: none;
+}
+
+/**
+ * Carousel
+ */
+.mantine-Carousel-control {
+  background-color: #ffffff;
+  border: 0;
+  box-shadow: var(--mantine-shadow-xs);
+  color: var(--mantine-color-secondary-text);
+  outline: 1px solid hsla(0 0% 0% / 0.05);
+}
+.mantine-Carousel-control[data-inactive] {
+  opacity: 0;
+}
