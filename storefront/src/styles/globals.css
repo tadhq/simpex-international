@@ -22,3 +22,34 @@ body {
 .mantine-Carousel-control[data-inactive] {
   opacity: 0;
 }
+
+/**
+ * Animation delays
+ */
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animation-delay-400 {
+  animation-delay: 400ms;
+}
+
+.animation-delay-600 {
+  animation-delay: 600ms;
+}
+
+*/ .mantine-Carousel-control {
+  background-color: #ffffff;
+
+  border: 0;
+
+  box-shadow: var(--mantine-shadow-xs);
+
+  color: var(--mantine-color-secondary-text);
+
+  outline: 1px solid hsla(0 0% 0% / 0.05);
+}
+
+.mantine-Carousel-control[data-inactive] {
+  opacity: 0;
+}

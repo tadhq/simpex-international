@@ -12,10 +12,48 @@ const intlMiddleware = createIntlMiddleware({
 });
 
 export default function middleware(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
+
+  // Redirect all non-home routes to home page (coming soon mode)
+  // Allow: home page, API routes, Next.js internals, static files, root
+  const isHomePage = /^\/[^\/]+\/[^\/]+(\/)?$/.test(pathname); // Matches /[locale]/[store] or /[locale]/[store]/
+  const isAllowedRoute =
+    isHomePage ||
+    pathname.startsWith('/api') ||
+    pathname.startsWith('/_next') ||
+    pathname.startsWith('/_vercel') ||
+    pathname.match(/\.\w+$/) || // Static files with extension
+    pathname === '/';
+
+  // Handle locale-only routes (e.g., /en/) - redirect to default store
+  const pathParts = pathname.split('/').filter(Boolean);
+  if (pathParts.length === 1 && locales.includes(pathParts[0] as any)) {
+    // This is just a locale, redirect to locale + default store
+    const locale = pathParts[0];
+    const defaultStore = 'retail'; // Default store based on StoreSwitchingContext
+    const homeUrl = new URL(`/${locale}/${defaultStore}`, request.url);
+    return Response.redirect(homeUrl);
+  }
+
+  // If not allowed route and has locale/store structure, redirect to home
+  if (!isAllowedRoute && pathname.startsWith('/')) {
+    if (pathParts.length >= 2 && locales.includes(pathParts[0] as any)) {
+      const locale = pathParts[0];
+      const store = pathParts[1];
+      const homeUrl = new URL(`/${locale}/${store}`, request.url);
+      return Response.redirect(homeUrl);
+    }
+  }
+
+  // Continue with normal middleware flow
   const response = intlMiddleware(request);
 
   withCurrency(request, response);
   withRegion(request, response);
+
+  if (isHomePage) {
+    response.headers.set('x-is-home-page', 'true');
+  }
 
   return response;
 }

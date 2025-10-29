@@ -18,6 +18,7 @@ import pick from 'lodash/pick';
 import type { Metadata } from 'next';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { Lato } from 'next/font/google';
+import { headers } from 'next/headers';
 
 const font = Lato({ weight: ['400', '700', '900'], subsets: ['latin'] });
 
@@ -31,17 +32,31 @@ export async function generateMetadata(): Promise<Metadata> {
     });
   }
 
+  // return {
+  //   title: {
+  //     template: `%s | ${generalSettings.project_title}`,
+  //     default: generalSettings.project_title as any,
+  //   },
+  //   description: generalSettings.meta_description,
+  //   manifest: '/manifest.json',
+  //   metadataBase: new URL('http://localhost:3000'),
+  //   icons: {
+  //     icon: getDirectusFile(generalSettings.favicon),
+  //     shortcut: getDirectusFile(generalSettings.favicon),
+  //   },
+  //   openGraph: {
+  //     images: ogImages,
+  //   },
+  // };
   return {
-    title: {
-      template: `%s | ${generalSettings.project_title}`,
-      default: generalSettings.project_title as any,
-    },
-    description: generalSettings.meta_description,
+    title: 'Simpex International',
+    description:
+      'Simpex International is a global leader in the production and distribution of high-quality products.',
     manifest: '/manifest.json',
     metadataBase: new URL('http://localhost:3000'),
     icons: {
-      icon: getDirectusFile(generalSettings.favicon),
-      shortcut: getDirectusFile(generalSettings.favicon),
+      icon: '/logoSimpex.png',
+      shortcut: '/logoSimpex.png',
     },
     openGraph: {
       images: ogImages,
@@ -59,6 +74,8 @@ interface Props extends React.PropsWithChildren {
 
 export default function Layout({ children, params }: Props) {
   const messages = useMessages();
+  const headersList = headers();
+  const isHomePage = headersList.get('x-is-home-page') === 'true';
 
   return (
     <html lang={params.locale}>
@@ -104,7 +121,9 @@ export default function Layout({ children, params }: Props) {
                 'newsletter'
               )}
             >
-              <MainLayout params={{ ...params, store: params.store }}>{children}</MainLayout>
+              <MainLayout params={{ ...params, store: params.store }} hideLayout={isHomePage}>
+                {children}
+              </MainLayout>
             </NextIntlClientProvider>
           </RefineContext>
           <Notifications position="top-center" />

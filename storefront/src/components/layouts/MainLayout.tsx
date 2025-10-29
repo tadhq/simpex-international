@@ -17,12 +17,26 @@ import { getCustomer } from '@/lib/medusa/api';
 interface MainLayoutProps {
   children: React.ReactNode;
   params: { locale: string; store: string }; // Accept params as a prop
+  hideLayout?: boolean; // Optional prop to hide header/footer
 }
 
-export default async function MainLayout({ children, params }: MainLayoutProps) {
+export default async function MainLayout({
+  children,
+  params,
+  hideLayout = false,
+}: MainLayoutProps) {
   const currency = await getCurrency();
   const accessToken = cookies().get('_medusa_jwt')?.value;
   const customer = await getCustomer(accessToken);
+
+  // If hideLayout is true, just render children without header/footer
+  if (hideLayout) {
+    return (
+      <MedusaClientProvider currency={currency} defaultCurrency={defaultCurrency}>
+        <WishlistProvider customer={customer}>{children}</WishlistProvider>
+      </MedusaClientProvider>
+    );
+  }
 
   return (
     <MedusaClientProvider currency={currency} defaultCurrency={defaultCurrency}>

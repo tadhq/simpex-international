@@ -1,6 +1,7 @@
 export { default as BannersWideSection } from './BannersWideSection';
 export { default as BrandsCarouselSection } from './BrandsCarouselSection';
 export { default as CategoriesCarouselSection } from './CategoriesCarouselSection';
+export { default as ComingSoon } from './ComingSoon';
 export { default as FeaturedProduct } from './FeaturedProduct';
 export { default as NewsletterCtaSection } from './NewsletterCtaSection';
 export { default as NewsletterSection } from './NewsletterSection';
